@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CRUD_MVVM.Views.ListarAlumnosView"
+             x:Name="CurrentPage"
+             xmlns:Converter="clr-namespace:CRUD_MVVM.Converters"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Converter:Base64ToImageSource x:Key="Base64ToImage" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout Padding="0" BackgroundColor="#5B55e1" >
+
+        <CollectionView ItemsSource="{Binding ListaPersonas}"
+                        VerticalOptions="CenterAndExpand">
+
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical"
+                                 Span="1"
+                                 VerticalItemSpacing="2"
+                                 />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+
+                    <SwipeView>
+                        <SwipeView.RightItems>
+
+                            <SwipeItems>
+                                <SwipeItem Text="Editar"
+                                           IconImageSource="edicion.png"
+                                           BackgroundColor="LightGreen"
+                                           Command="{Binding Source={x:Reference CurrentPage}, Path=BindingContext.EditarPersonaCommand}"
+                                           CommandParameter="{Binding .}"/>
+
+                                <SwipeItem Text="Eliminar"
+                                           IconImageSource="papelera.png"
+                                           BackgroundColor="Red"
+                                           Command="{Binding Source={x:Reference CurrentPage}, Path=BindingContext.EliminarPersonaCommand}"
+                                           CommandParameter="{Binding .}"/>
+
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+
+                        
+                            
+                        
+                        <Grid Padding="5,5,0,5"  Margin="0,0,1,0" BackgroundColor="Transparent"  >
+                        
+                                <StackLayout Padding="0,0,0,0"
+                                         Orientation="Horizontal"
+                                         Grid.Column="0" BackgroundColor="Transparent"
+                                        HeightRequest="80" >
+                                                         
+                                   <Image Source="{Binding Foto,  Converter={StaticResource Base64ToImage}}"                                  
+                               Aspect="AspectFill"
+                                   />
+                               
+                            </StackLayout>
+                            
+                                <StackLayout Grid.Column="1" BackgroundColor="Transparent">
+                                                                 
+                                
+                                <StackLayout Orientation="Horizontal" BackgroundColor="Transparent">
+                                    <Label FontSize="16"
+                                       Margin="-70,0,0,0"
+                                       HorizontalOptions="StartAndExpand" 
+                                       VerticalOptions="Center"
+                                       FontAttributes="Bold"
+                                       >
+                                        <Label.Text>
+                                            <MultiBinding StringFormat="{}{0} {1} ">
+                                                <Binding Path="Nombre"/>
+                                                <Binding Path="Apellidos"/>
+                                            </MultiBinding>
+                                        </Label.Text>
+                                    </Label >                    
+                               </StackLayout>
+                                
+                                    <StackLayout Orientation="Horizontal">
+                                <Label FontSize="16"
+                                       Margin="-70,0,0,0"
+                                       HorizontalOptions="StartAndExpand" 
+                                       VerticalOptions="Center"
+                                       FontAttributes="Bold"
+                                       Text="{Binding Puesto}">
+                                </Label >
+                            </StackLayout>
+                              
+                                    <StackLayout Orientation="Horizontal">
+                                    <Label FontSize="16"
+                                       Margin="-70,0,0,0"
+                                       HorizontalOptions="StartAndExpand" 
+                                       VerticalOptions="Center"
+                                       FontAttributes="Bold"
+                                       Text="{Binding Edad}">
+                                    </Label >
+                                </StackLayout>
+                               
+                            </StackLayout>
+                           
+                        </Grid>
+                      
+                    </SwipeView>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </StackLayout>
+</ContentPage>

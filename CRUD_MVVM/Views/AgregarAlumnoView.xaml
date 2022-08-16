@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CRUD_MVVM.Views.AgregarAlumnoView"
+             xmlns:Converter="clr-namespace:CRUD_MVVM.Converters"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Converter:Base64ToImageSource x:Key="Base64ToImage" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ScrollView>
+        
+    
+    <StackLayout Padding="5,0,5,0"
+                  BackgroundColor="#5B55e1">
+            <Label Text="Alumno Johnny Lopez"
+                           FontSize="18"
+                           TextColor="Aquamarine"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"
+                           />
+
+
+            <Image  x:Name="imagePersona"
+                Source="avatares"
+                Aspect="AspectFit"
+                HorizontalOptions="Center" 
+                WidthRequest="300"
+                HeightRequest="220"
+                IsVisible="{Binding IsImageDefault}">
+      
+         <Image.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding TomarFotoCommand}"/>
+         </Image.GestureRecognizers>
+        </Image>
+        
+        <Image  x:Name="imagePersona2"
+                Source="{Binding Foto,  Converter={StaticResource Base64ToImage}}"
+                Aspect="AspectFit"
+                HorizontalOptions="Center" 
+                WidthRequest="300"
+                HeightRequest="220"
+                IsVisible="{Binding IsImageEdit}">
+
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding TomarFotoCommand}"/>
+            </Image.GestureRecognizers>
+
+        </Image>
+
+        <StackLayout>
+                <Frame BackgroundColor="Aquamarine"
+                       HeightRequest="340"
+                       CornerRadius="10"
+                       Margin="0,8,8,0"
+                       HasShadow="True">
+                    <Grid>
+                        
+                        <StackLayout Grid.Row="0" Grid.Column="0" BackgroundColor="Transparent">
+                            <Frame  CornerRadius="10" HeightRequest="50" Margin="-10,0,0,0" Padding="0,5,0,5" HasShadow="True">
+                                <StackLayout Orientation="Horizontal" Margin="10,0,0,0">
+                                    <Frame HeightRequest="30" 
+                                       WidthRequest="50" 
+                                       CornerRadius="10"
+                                       HasShadow="True"
+                                       Padding="0"
+                                       Margin="0,1,10,1">
+
+                                        <Image Source="nombre.png" 
+                                               Aspect="AspectFit" 
+                                               Margin="0,0,0,0"/>
+                                    </Frame>
+                                    <Label Text="Nombre" Margin="0,0,0,0" FontSize="13"/>
+                                    <Entry Text="{Binding Nombre}" 
+                           Placeholder="Ingrese su nombre"
+                           FontSize="14"
+                           Keyboard="Text" 
+                           HorizontalOptions="FillAndExpand" 
+                            Margin="-56,0,20,0"/>
+                                </StackLayout>
+                             </Frame>
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="1" Grid.Column="0" BackgroundColor="Transparent">
+                            <Frame  CornerRadius="10" HeightRequest="50" Margin="-10,0,0,0" Padding="0,5,0,5" HasShadow="True">
+                                <StackLayout Orientation="Horizontal" Margin="10,0,0,0">
+                                    <Frame HeightRequest="30" 
+                                       WidthRequest="50" 
+                                       CornerRadius="10"
+                                       HasShadow="True"
+                                       Padding="0"
+                                       Margin="0,1,10,1">
+
+                                        <Image Source="apellidos" 
+                                               Aspect="AspectFit" 
+                                               Margin="0,0,0,0"/>
+                                    </Frame>
+                                    <Label Text="Apellidos" Margin="0,0,0,0" FontSize="13"/>
+                                    <Entry Text="{Binding Apellidos}" 
+                       Placeholder="Ingrese sus Apellidos"
+                       FontSize="14"
+                       Keyboard="Text" 
+                       HorizontalOptions="FillAndExpand" 
+                       Margin="-63,0,20,0"/>
+
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="2" Grid.Column="0" BackgroundColor="Transparent">
+                            <Frame  CornerRadius="10" HeightRequest="50" Margin="-10,0,0,0" Padding="0,5,0,5" HasShadow="True">
+                                <StackLayout Orientation="Horizontal" Margin="10,0,0,0">
+                                    <Frame HeightRequest="30" 
+                                       WidthRequest="50" 
+                                       CornerRadius="10"
+                                       HasShadow="True"
+                                       Padding="0"
+                                       Margin="0,1,10,1">
+
+                                        <Image Source="edad.png" 
+                                               Aspect="AspectFit" 
+                                               Margin="0,0,0,0"/>
+                                    </Frame>
+                                    <Label Text="Edad" Margin="5,0,0,0" FontSize="13" />
+                                    <Entry Text="{Binding Edad}" 
+                                     Placeholder="Ingrese su edad"
+                                     HorizontalOptions="FillAndExpand" 
+                                        Margin="-40,0,50,0"
+                                     FontSize="14"               
+                                    HorizontalTextAlignment="Start"              
+                                  Keyboard="Numeric"/>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="3" Grid.Column="0" BackgroundColor="Transparent">
+                            <Frame  CornerRadius="10" HeightRequest="50" Margin="-10,0,0,0" Padding="0,5,0,5" HasShadow="True">
+                                <StackLayout Orientation="Horizontal" Margin="10,0,0,0">
+                                    <Frame HeightRequest="30" 
+                                       WidthRequest="50" 
+                                       CornerRadius="10"
+                                       HasShadow="True"
+                                       Padding="0"
+                                       Margin="0,1,10,1">
+
+                                        <Image Source="direccion.png" 
+                                               Aspect="AspectFit" 
+                                               Margin="0,0,0,0"/>
+                                    </Frame>
+                                    <Label Text="Direccion" Margin="5,0,0,0" />
+                                    <Entry Text="{Binding Direccion}" 
+                                    Placeholder="Ingrese su direccion"
+                                    HorizontalOptions="FillAndExpand" 
+                                    Margin="-68,0,20,0"
+                                    FontSize="15"                              
+                                    Keyboard="Text"/>
+
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                        <StackLayout Grid.Row="4" Grid.Column="0" BackgroundColor="Transparent">
+                            <Frame  CornerRadius="10" HeightRequest="50" Margin="-10,0,0,0" Padding="0,5,0,5" HasShadow="True">
+                                <StackLayout Orientation="Horizontal" Margin="10,0,0,0">
+                                    <Frame HeightRequest="30" 
+                                       WidthRequest="50" 
+                                       CornerRadius="10"
+                                       HasShadow="True"
+                                       Padding="0"
+                                       Margin="0,1,10,1">
+
+                                        <Image Source="puesto.png" 
+                                               Aspect="AspectFit" 
+                                               Margin="0,0,0,0"/>
+                                    </Frame>
+                                    <Label Text="Puesto" Margin="5,0,0,0" />
+                                    <Entry Text="{Binding Puesto}" 
+                                HorizontalOptions="FillAndExpand" 
+                                Placeholder="Ingrese su puesto de trabajo"
+                                Margin="-50,0,20,0"
+                                FontSize="15"
+                                Keyboard="Text"/>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </Grid>
+                </Frame>
+
+
+                <Frame CornerRadius="10" HasShadow="True" BackgroundColor="#5B55e1">
+                    <Grid>
+                        <Button Text="Guardar"
+                CornerRadius="10"
+                Margin="0,0,0,0"
+                TextTransform="None"
+                BackgroundColor="Orange"
+                TextColor="White"
+                FontSize="16"
+                FontAttributes="Bold"
+                Command="{Binding GuardarCommand}"
+                VerticalOptions="EndAndExpand" Grid.Row="0" Grid.Column="0"/>
+
+                 <Button Text="Empleados"
+                CornerRadius="10"
+                 Margin="0,0,0,0"
+                TextTransform="None"
+                BackgroundColor="Orange"
+                TextColor="White"
+                FontSize="16"
+                Command="{Binding ListarCommand}" Grid.Row="0" Grid.Column="1"/>
+                    </Grid>
+                </Frame>
+            
+    </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
